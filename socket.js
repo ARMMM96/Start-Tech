@@ -1,5 +1,5 @@
 const socketIO = require("socket.io");
-const { expressServer } = require("./index");
+const { expressServer } = require("./app/app");
 
 const {
   onlineController,
