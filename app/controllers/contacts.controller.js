@@ -1,5 +1,5 @@
 const catchAsyncError = require("../utilities/catchAsyncError");
-const User = require("../models/User");
+const User = require("../database/models/user.model");
 const ReqError = require("../utilities/ReqError");
 
 const {
