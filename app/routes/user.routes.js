@@ -7,20 +7,16 @@ const { authentication } = require("../middlewares/authentication.middleware");
 
 router.get("/me", authentication, userController.profile);
 router.post(
-  "/register",
+  "",
   checkDuplicate(userModel, "username"),
   userController.register
 );
-router.post("/login", userController.login);
-router.post(
-  "/change-password/:id",
-  authentication,
-  userController.changePassword
-);
-router.get("/get/:id", authentication, userController.getSingleUser);
+router.post("/auth", userController.login);
 
-router.get("/all", authentication, userController.getAllUsers);
-router.put("/update/:id", authentication, userController.updateUserData);
-router.delete("/delete/:id", authentication, userController.deleteUser);
+router.get("/:id", userController.getSingleUser);
+
+router.get("/", userController.getAllUsers);
+router.put("/:id", userController.updateUserData);
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;
