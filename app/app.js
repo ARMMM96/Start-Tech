@@ -3,15 +3,18 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const toobusy = require("toobusy-js");
 const app = express();
-const connectDB = require('./database/connection')
+const connectDB = require("./database/connection");
 
 // Database connection
-connectDB()
+connectDB();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
+const userRoutes = require("./routes/user.routes");
+
+app.use("/api/user/", userRoutes);
 
 app.use(function (req, res, next) {
   if (toobusy()) {

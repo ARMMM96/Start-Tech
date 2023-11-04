@@ -28,7 +28,6 @@ const userSchema = mongoose.Schema({
     type: String,
     trim: true,
     lowercase: true,
-    required: true,
 
     validate(value) {
       if (!validator.isEmail(value)) {
@@ -83,7 +82,6 @@ const userSchema = mongoose.Schema({
   role: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Role",
-    required: true,
   },
   tokens: [
     {
