@@ -3,6 +3,10 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const toobusy = require("toobusy-js");
 const app = express();
+const connectDB = require('./database/connection')
+
+// Database connection
+connectDB()
 
 app.use(express.json());
 app.use(cookieParser());
