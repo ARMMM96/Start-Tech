@@ -14,7 +14,7 @@ app.use(cors());
 
 const userRoutes = require("./routes/user.routes");
 
-app.use("/api/user/", userRoutes);
+app.use("/api/users/", userRoutes);
 
 app.use(function (req, res, next) {
   if (toobusy()) {
