@@ -1,5 +1,7 @@
-const chatRoom = require("../database/models/chatRoom.model");
+const ChatRoom = require("../database/models/chatRoom.model");
 const userModel = require("../database/models/user.model");
+const catchAsyncError = require("../utilities/catchAsyncError");
+const ReqError = require("../utilities/ReqError");
 
 exports.createChatRoom = async (chatRoomDetails) =>
   await ChatRoom.create(chatRoomDetails);
