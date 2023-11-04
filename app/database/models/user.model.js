@@ -136,9 +136,9 @@ userSchema.methods.generateToken = async function () {
   return token;
 };
 
-userSchema.statics.loginUser = async (email, password) => {
-  const userData = await User.findOne({ email });
-  if (!userData) throw new Error("invalid email");
+userSchema.statics.loginUser = async (usernameOrEmail, password) => {
+  const userData = await User.findOne({ usernameOrEmail });
+  if (!userData) throw new Error("invalid email or User name");
   const validatePassword = await bcryptjs.compare(password, userData.password);
   if (!validatePassword) throw new Error("invalid password");
   return userData;
