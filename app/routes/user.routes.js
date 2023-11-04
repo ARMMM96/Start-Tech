@@ -5,18 +5,14 @@ const checkDuplicate = require("../middlewares/checkDuplication.middleware");
 
 const { authentication } = require("../middlewares/authentication.middleware");
 
-router.get("/me", authentication, userController.profile);
-router.post(
-  "",
-  checkDuplicate(userModel, "username"),
-  userController.register
-);
+router.post("", checkDuplicate(userModel, "username"), userController.register);
 router.post("/auth", userController.login);
 
-router.get("/:id", userController.getSingleUser);
+router.get("/me", authentication, userController.profile);
 
-router.get("/", userController.getAllUsers);
-router.put("/:id", userController.updateUserData);
-router.delete("/:id", userController.deleteUser);
+router.get("/:id", authentication, userController.getSingleUser);
+router.get("/", authentication, userController.getAllUsers);
+router.put("/:id", authentication, userController.updateUserData);
+router.delete("/:id", authentication, userController.deleteUser);
 
 module.exports = router;
