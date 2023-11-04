@@ -123,45 +123,6 @@ class User {
     }
   };
 
-  static async changePassword(req, res) {
-    try {
-      const { currentPassword, newPassword } = req.body; // Get the user ID, current password, and new password from the request body
-
-      const id = req.params.id;
-      const user = await userModel.findById(id); // Find the user based on their ID
-
-      if (!user) {
-        helper.responseHandler(res, 404, false, user, "User not found");
-      } else {
-        const isMatch = await bcryptjs.compare(currentPassword, user.password);
-        if (!isMatch) {
-          helper.responseHandler(
-            res,
-            400,
-            false,
-            null,
-            "Current password is incorrect"
-          );
-        } else {
-          const userData = await userModel.findByIdAndUpdate(
-            req.params.id,
-            { password: newPassword },
-            { new: true }
-          );
-        }
-        helper.responseHandler(
-          res,
-          200,
-          true,
-          user,
-          "Password changed successfully"
-        );
-      }
-    } catch (e) {
-      console.error(e.message);
-      helper.responseHandler(res, 500, false, e, e.message);
-    }
-  }
 
 
 }
